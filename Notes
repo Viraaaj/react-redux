@@ -1,0 +1,16 @@
+States:
+    Local state: Belongs to single component
+    Cross component state: State is affected by multiple components (Props)
+    App wide state: Managing state app wide
+
+Redux vs React context:
+    Context is quite complex as compared to redux context (depends)
+    Context is great if data is not changing a lot
+
+How redux works:
+    One store for all states
+    Components will not directly change data in store hence we have reducer functions
+    Reducer functions changes data and stores
+    Components triggers/dispatches actions
+    Action is a js object which describes the action/operation reducer should perform
+    components dispatches => actions => reducers => store
