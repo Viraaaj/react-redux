@@ -1,10 +1,9 @@
-import Counter from './components/Counter';
-
+import Counter from "./components/Counter";
 
 function App() {
-  return (
-    <Counter />
-  );
+  return <Counter />;
 }
 
 export default App;
+
+//Installing redux in react app: npm install redux react-redux
