@@ -21,7 +21,7 @@ const counterSlice = createSlice({
       state.counter--;
     },
     increase(state, action) {
-      state.counter = state.counter + action.amount;
+      state.counter = state.counter + action.payload;
     },
     toggle(state) {
       state.showCounter = !state.showCounter;
@@ -68,8 +68,10 @@ const counterSlice = createSlice({
 const store = configureStore({
   reducer: counterSlice.reducer,
 });
-
 // if we have multiple reducers then we can create a object in reducer: {variable: variable.reducer}
+
+export const counterActions = counterSlice.actions;
+// by creating this we don't need to worry about unique identifiers as redux will create that for us
 
 export default store;
 // goto main index.js file there we have wrapped our store to whole app

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { counterActions } from "../store";
 import classes from "./Counter.module.css";
 
 const Counter = () => {
@@ -7,20 +8,39 @@ const Counter = () => {
 
   const dispatch = useDispatch();
 
+  // Without toolkit
+  // const incrementHandler = () => {
+  //   dispatch({ type: "increment" });
+  // };
+
+  // const increaseHandler = () => {
+  //   dispatch({ type: "increase", amount: 5 });
+  // };
+
+  // const decrementHandler = () => {
+  //   dispatch({ type: "decrement" });
+  // };
+
+  // const toggleCounterHandler = () => {
+  //   dispatch({ type: "hideCounter" });
+  // };
+
+  // With toolkit
   const incrementHandler = () => {
-    dispatch({ type: "increment" });
+    dispatch(counterActions.increment());
   };
 
   const increaseHandler = () => {
-    dispatch({ type: "increase", amount: 5 });
+    dispatch(counterActions.increase(5));
   };
+  //Here if we have payload we can pass the value of payload ot an object and that value is stored as payload by default so we need to change that variable in store
 
   const decrementHandler = () => {
-    dispatch({ type: "decrement" });
+    dispatch(counterActions.decrement());
   };
 
   const toggleCounterHandler = () => {
-    dispatch({ type: "hideCounter" });
+    dispatch(counterActions.toggle());
   };
 
   return (
@@ -52,6 +72,7 @@ export default Counter;
 
 // Redux in class based Components
 // import React, { Component } from 'react'
+// import { counterActions } from './../store/index';
 // export class CounterClass extends Component {
 
 //   incrementHandler() {
