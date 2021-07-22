@@ -1,8 +1,9 @@
-import { useDispatch, useSelector, connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import classes from "./Counter.module.css";
 
 const Counter = () => {
   const counter = useSelector((state) => state.counter);
+  const toggleCounter = useSelector((state) => state.showCounter);
 
   const dispatch = useDispatch();
 
@@ -18,12 +19,18 @@ const Counter = () => {
     dispatch({ type: "decrement" });
   };
 
-  const toggleCounterHandler = () => {};
+  const toggleCounterHandler = () => {
+    dispatch({ type: "hideCounter" });
+  };
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
+      {toggleCounter ? (
+        <div className={classes.value}>{counter}</div>
+      ) : (
+        <div className={classes.value}>**</div>
+      )}
 
       <div>
         <button onClick={incrementHandler}>Increment</button>
