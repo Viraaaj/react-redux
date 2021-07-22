@@ -1,6 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const initialState = { counter: 0, showCounter: true };
+const initialCounterState = { counter: 0, showCounter: true };
 
 //we can create different slices for different functionality
 // in slice we need to add :
@@ -12,7 +12,7 @@ const initialState = { counter: 0, showCounter: true };
 // create new object and keep all states we are not editing and overrides states which we are editing
 const counterSlice = createSlice({
   name: "counter",
-  initialState: initialState,
+  initialState: initialCounterState,
   reducers: {
     increment(state) {
       state.counter++;
@@ -29,48 +29,31 @@ const counterSlice = createSlice({
   },
 });
 
-//As we are using slice we don't need this reducer
-// const counterReducer = (state = initialState, action) => {
-//   if (action.type === "increment") {
-//     return {
-//       counter: state.counter + 1,
-//       showCounter: state.showCounter,
-//     };
-//   }
-
-//   if (action.type === "increase") {
-//     // state.counter++ //Never do this, though this will works but it will cause some errors in application
-//     return {
-//       counter: state.counter + action.amount,
-//       showCounter: state.showCounter,
-//     };
-//   }
-
-//   if (action.type === "decrement") {
-//     return {
-//       counter: state.counter - 1,
-//       showCounter: state.showCounter,
-//     };
-//   }
-
-//   if (action.type === "hideCounter") {
-//     return {
-//       counter: state.counter,
-//       showCounter: !state.showCounter,
-//     };
-//   }
-
-//   return state;
-// };
-// const store = createStore(counterReducer);
+// Authentication
+const initialAuthState = {
+  isAuthenticated: false,
+};
+const authenticationSlice = createSlice({
+  name: "authentication",
+  initialState: initialAuthState,
+  reducers: {
+    login(state) {
+      state.isAuthenticated = true;
+    },
+    logout(state) {
+      state.isAuthenticated = false;
+    },
+  },
+});
 
 // =>ConfigureStore makes easiers to combine multiple reducers
 const store = configureStore({
-  reducer: counterSlice.reducer,
+  reducer: { counter: counterSlice.reducer, auth: authenticationSlice.reducer },
 });
 // if we have multiple reducers then we can create a object in reducer: {variable: variable.reducer}
 
 export const counterActions = counterSlice.actions;
+export const authActions = authenticationSlice.actions;
 // by creating this we don't need to worry about unique identifiers as redux will create that for us
 
 export default store;
