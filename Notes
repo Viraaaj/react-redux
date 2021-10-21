@@ -16,3 +16,5 @@ How redux works:
     components dispatches => actions => reducers => store
 
 Installing redux in react app: npm install redux react-redux
+
+To know more visit: https://react-redux.js.org/
